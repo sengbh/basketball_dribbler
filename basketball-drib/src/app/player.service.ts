@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {PlayerClass} from './player';
-import {PLAYERS} from './player-list';
+import {PLAYERS, KEYCODES} from './player-list';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
+  private keyCodes: string = KEYCODES;
   // retrieve players from PlayerClass and PLAYERS
   private players: PlayerClass[] = PLAYERS;
   getPlayers(): PlayerClass[]{
@@ -14,8 +15,20 @@ export class PlayerService {
 
   // add player dynamically to screen
   addPlayer(name: string): void{
-    var newPlayer = {name: name, keyCode: 'D', color: '#541288'};
+    this.randomKeyCodes();
+    var randNumber = Math.floor(Math.random()*100)%(this.keyCodes.length);
+    var newKeyCode = this.keyCodes.charAt(randNumber);
+    if(newKeyCode === '') return;
+
+    var newPlayer = {name: name, keyCode: newKeyCode, color: '#541288'};
     this.players.push(newPlayer);
+  }
+
+  randomKeyCodes(): void{
+    var randT = this;
+    randT.players.forEach(function(elem){
+      randT.keyCodes = randT.keyCodes.replace(elem.keyCode, '');
+    }); 
   }
 
   constructor() { }
