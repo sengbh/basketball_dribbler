@@ -6,6 +6,11 @@
   </div>
 </div> -->
 
+<!-- add new player screen below -->
+<div class="new_player">
+  <input #newPlayerName placeholder="Add New Player">
+  <button (click)="this.playerService.addPlayer(newPlayerName.value); newPlayerName.value=''">+</button>
+</div>
 <!-- Below is used when we subst hardcode players with ServicePlayer componenet -->
 <div class="players">
   <div class="player" *ngFor="let player of playerService.getPlayers()">

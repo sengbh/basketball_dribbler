@@ -12,5 +12,11 @@ export class PlayerService {
     return this.players;
   }
 
+  // add player dynamically to screen
+  addPlayer(name: string): void{
+    var newPlayer = {name: name, keyCode: 'D', color: '#541288'};
+    this.players.push(newPlayer);
+  }
+
   constructor() { }
 }
