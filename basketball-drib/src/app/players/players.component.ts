@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlayerClass} from '../player';
-import {PLAYERS} from '../player-list';
+//import {PLAYERS} from '../player-list';
+import {PlayerService} from '../player.service';
 
 
 @Component({
@@ -16,9 +17,10 @@ export class PlayersComponent implements OnInit {
   //   name: 'player 1',
   //   color: '#BD10E0'
   // };
-  private players: PlayerClass[] = PLAYERS;
+  //this is being removed as we used PlayerService instead
+  //private players: PlayerClass[] = PLAYERS;
 
-  constructor() { }
+  constructor( private playerService: PlayerService) { }
 
   ngOnInit() {
   }

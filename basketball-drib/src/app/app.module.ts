@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
 import { PlaygroundComponent } from './playground/playground.component';
 import { WinnerComponent } from './winner/winner.component';
+import {PlayerService} from './player.service';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { WinnerComponent } from './winner/winner.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    PlayerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

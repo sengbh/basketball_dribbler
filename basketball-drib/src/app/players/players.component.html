@@ -1,7 +1,15 @@
-<div class="players">
+<!-- <div class="players">
   <div class="player" *ngFor="let player of players">
     <span class="keycode" [style.backgroundColor]="player.color" >{{player.keyCode}}</span>
     <span class="name">{{player.name}}</span>
-    <!-- <span class=""></span> -->
+    <span class=""></span>
+  </div>
+</div> -->
+
+<!-- Below is used when we subst hardcode players with ServicePlayer componenet -->
+<div class="players">
+  <div class="player" *ngFor="let player of playerService.getPlayers()">
+    <span class="keycode" [style.backgroundColor]="player.color" >{{player.keyCode}}</span>
+    <span class="name">{{player.name}}</span>
   </div>
 </div>
