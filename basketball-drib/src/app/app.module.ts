@@ -7,6 +7,7 @@ import { PlayersComponent } from './players/players.component';
 import { PlaygroundComponent } from './playground/playground.component';
 import { WinnerComponent } from './winner/winner.component';
 import {PlayerService} from './player.service';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {PlayerService} from './player.service';
     WinnerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [
     PlayerService
