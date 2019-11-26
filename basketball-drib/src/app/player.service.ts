@@ -27,11 +27,36 @@ export class PlayerService {
     this.players.push(newPlayer);
   }
 
+  playerScores(event: KeyboardEvent): void{
+    var key = String.fromCharCode(event.keyCode);
+    if(event.keyCode>64 && event.keyCode<94){
+      (this.players).forEach(function(player){
+        if(player.keyCode == key){
+          player.score += 10;
+          player.remain_drib += 1;
+        }
+      }
+        );
+    }
+  }
+
   randomKeyCodes(): void{
     var randT = this;
     randT.players.forEach(function(elem){
       randT.keyCodes = randT.keyCodes.replace(elem.keyCode, '');
     }); 
+  }
+
+  dribble(): void{
+    (this.players).forEach(function(player){
+      player.duration = (player.remain_drib>0?1/this.player.remain_drip:0)+'s';
+      player.remain_drib = 0;
+    }
+    );
+    var t = this;
+    setTimeout(function(){
+      t.dribble();
+    },1000)
   }
 
   constructor() { }
