@@ -23,7 +23,7 @@ export class PlayerService {
     var newKeyCode = this.keyCodes.charAt(randNumber);
     if(newKeyCode === '') return;
 
-    var newPlayer = {name: name, keyCode: newKeyCode, color: chroma.random().hex()};
+    var newPlayer = {name: name, keyCode: newKeyCode, color: chroma.random().hex() ,score: 0, duration: '0s', remain_drib: 0};
     this.players.push(newPlayer);
   }
 

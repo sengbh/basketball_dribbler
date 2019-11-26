@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {PlayerClass} from '../player';
 //import {PLAYERS} from '../player-list';
 import {PlayerService} from '../player.service';
@@ -19,6 +19,8 @@ export class PlayersComponent implements OnInit {
   // };
   //this is being removed as we used PlayerService instead
   //private players: PlayerClass[] = PLAYERS;
+
+  @Input('screenOne') screenOne : any = true;
 
   constructor( private playerService: PlayerService) { }
 

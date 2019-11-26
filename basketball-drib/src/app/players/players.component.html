@@ -7,14 +7,15 @@
 </div> -->
 
 <!-- add new player screen below -->
-<div class="new_player">
+<div class="new_player" *ngIf="screenOne === true">
   <input #newPlayerName placeholder="Add New Player">
   <button (click)="this.playerService.addPlayer(newPlayerName.value); newPlayerName.value=''">+</button>
 </div>
 <!-- Below is used when we subst hardcode players with ServicePlayer componenet -->
-<div class="players">
+<div class="players" [class.playing]="screenOne === 'playarea'">
   <div class="player" *ngFor="let player of playerService.getPlayers()">
     <span class="keycode" [style.backgroundColor]="player.color" >{{player.keyCode}}</span>
     <span class="name">{{player.name}}</span>
+    <span class="score" *ngIf="screenOne !== true">{{player.score}}</span>
   </div>
 </div>
