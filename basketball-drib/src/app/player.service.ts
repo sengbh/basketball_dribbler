@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {PlayerClass} from './player';
 import {PLAYERS, KEYCODES} from './player-list';
 
+declare var chroma: any;
+// import * as chroma from 'chroma-js';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +23,7 @@ export class PlayerService {
     var newKeyCode = this.keyCodes.charAt(randNumber);
     if(newKeyCode === '') return;
 
-    var newPlayer = {name: name, keyCode: newKeyCode, color: '#541288'};
+    var newPlayer = {name: name, keyCode: newKeyCode, color: chroma.random().hex()};
     this.players.push(newPlayer);
   }
 
