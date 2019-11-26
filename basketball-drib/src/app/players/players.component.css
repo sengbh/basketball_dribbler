@@ -54,6 +54,16 @@
 }
 
 @keyframes bounce{
-    50% {transform: translate3d(0, 60vh, 0);}
-    100% {transform: translate(0,0,0);}
+    50% {transform: translate3d(0, 60vh, 0); }
+    100% {transform: translate(0,0,0); }
+}
+
+.start_game{
+    background: #0bb76c;
+    display: block;
+    font-size: 1.5em;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #ffff;
 }

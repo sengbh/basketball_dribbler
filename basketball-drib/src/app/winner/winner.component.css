@@ -1,0 +1,9 @@
+.new_game{
+    background: #0bb76c;
+    display: block;
+    font-size: 1.5em;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #ffff;
+}

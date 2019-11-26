@@ -6,16 +6,20 @@
   </div>
 </div> -->
 
-<!-- add new player screen below -->
-<div class="new_player" *ngIf="screenOne === true">
-  <input #newPlayerName placeholder="Add New Player">
-  <button (click)="this.playerService.addPlayer(newPlayerName.value); newPlayerName.value=''">+</button>
-</div>
+
+
 <!-- Below is used when we subst hardcode players with ServicePlayer componenet -->
-<div class="players" [class.playing]="screenOne === 'playarea'">
-  <div class="player" *ngFor="let player of playerService.getPlayers()" [style.animationDuration]="player.duration">
+<div class="players" [class.playing]="screenOne == 'playarea'">
+  <!-- this line link to the play screen -->
+  <a class="start_game" href="/play" *ngIf="screenOne == true">start a game</a>
+  <!-- add new player screen below -->
+<div class="new_player" *ngIf="screenOne == true">
+    <input #newPlayerName placeholder="Add New Player">
+    <button (click)="this.playerService.addPlayer(newPlayerName.value); newPlayerName.value=''">+</button>
+  </div>
+  <div class="player" *ngFor="let player of playerService.players" [style.animationDuration]="player.duration">
     <span class="keycode" [style.backgroundColor]="player.color" >{{player.keyCode}}</span>
     <span class="name">{{player.name}}</span>
-    <span class="score" *ngIf="screenOne !== true">{{player.score}}</span>
+    <span class="score" *ngIf="screenOne != true">{{player.score}}</span>
   </div>
 </div>

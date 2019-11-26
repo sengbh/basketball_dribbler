@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PlayerClass } from '../player';
 
 @Component({
   selector: 'app-winner',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinnerComponent implements OnInit {
 
-  constructor() { }
+  private winner : PlayerClass;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
+    this.winner = JSON.parse(this.route.snapshot.paramMap.get('player'));
+    localStorage.removeItem('players');
+;  }
 
 }

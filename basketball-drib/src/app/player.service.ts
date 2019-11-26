@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {PlayerClass} from './player';
 import {PLAYERS, KEYCODES} from './player-list';
+import { PlayersComponent } from './players/players.component';
+import {Router} from '@angular/router';
 
 declare var chroma: any;
 // import * as chroma from 'chroma-js';
@@ -11,9 +13,18 @@ declare var chroma: any;
 export class PlayerService {
   private keyCodes: string = KEYCODES;
   // retrieve players from PlayerClass and PLAYERS
-  private players: PlayerClass[] = PLAYERS;
+  // private players: PlayerClass[] = PLAYERS;
+  private players: PlayerClass[];
+  private maxScores: number = 100;
   getPlayers(): PlayerClass[]{
-    return this.players;
+    if(typeof localStorage != 'undefined' 
+      && typeof localStorage.players != 'undefined'
+      && localStorage.players != ''){
+        this.players = JSON.parse(localStorage.players);
+      }else{
+        this.players = PLAYERS;
+      }
+      return this.players;
   }
 
   // add player dynamically to screen
@@ -25,15 +36,23 @@ export class PlayerService {
 
     var newPlayer = {name: name, keyCode: newKeyCode, color: chroma.random().hex() ,score: 0, duration: '0s', remain_drib: 0};
     this.players.push(newPlayer);
+
+    if(typeof localStorage != 'undefined'){
+      localStorage.setItem('players', JSON.stringify(this.players));  
+    }
   }
 
   playerScores(event: KeyboardEvent): void{
     var key = String.fromCharCode(event.keyCode);
+    var t = this;
     if(event.keyCode>64 && event.keyCode<94){
       (this.players).forEach(function(player){
         if(player.keyCode == key){
           player.score += 10;
           player.remain_drib += 1;
+          if(player.score>t.maxScores){
+            t.router.navigate(['/winner', {player:JSON.stringify(player)}]);
+          }
         }
       }
         );
@@ -48,6 +67,9 @@ export class PlayerService {
   }
 
   dribble(): void{
+    if(typeof this.players == 'undefined'){
+      this.players = this.getPlayers();
+    }
     (this.players).forEach(function(player){
       player.duration = (player.remain_drib>0?1/this.player.remain_drip:0)+'s';
       player.remain_drib = 0;
@@ -59,5 +81,5 @@ export class PlayerService {
     },1000)
   }
 
-  constructor() { }
+  constructor(private router : Router) { }
 }

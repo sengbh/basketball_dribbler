@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PlayersComponent} from './players/players.component';
 import {PlaygroundComponent} from './playground/playground.component';
+import { WinnerComponent } from './winner/winner.component';
 
 const routes: Routes = [
   {path: '', component: PlayersComponent},
-  {path: 'play', component: PlaygroundComponent}
+  {path: 'play', component: PlaygroundComponent},
+  {path: 'winner', component: WinnerComponent}
 ];
 
 @NgModule({
