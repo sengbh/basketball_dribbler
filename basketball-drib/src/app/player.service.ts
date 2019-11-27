@@ -41,7 +41,7 @@ export class PlayerService {
     }
   }
 
-  playerScores(event): void{
+  playerScores(event: KeyboardEvent): void{
     var key = String.fromCharCode(event.keyCode);
     var t = this;
     if(event.keyCode>64 && event.keyCode<91){
